@@ -1,0 +1,11 @@
+{% extends 'main/layout.html' %}
+{% block title %}
+{{task.name}}
+{% endblock %}
+{% block content %}
+<h1>{{task.name}}</h1>
+<h3>{{task.description}}</h3>
+<h3>Входные данные: {{task.input}}</h3>
+<h3>Выходные данные: {{task.output}}</h3>
+<h3>Верно решили {{task.try_true}} из {{task.try_all}} пользователей</h3>
+{% endblock %}

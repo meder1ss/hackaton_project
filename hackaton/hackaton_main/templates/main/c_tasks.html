@@ -1,0 +1,12 @@
+{% extends 'main/layout.html' %}
+{% block title %}
+C++ задачи
+{% endblock %}
+{% block content %}
+<h1>Задачи</h1>
+<h2>Всего {{tasks_count}} задач</h2>
+{% for task in tasks_objects %}
+<h3><a href="/tasks/{{task.id}}">{{task.name}}</a></h3>
+<h3>Верно решили {{task.try_true}} из {{task.try_all}} пользователей</h3>
+{% endfor %}
+{% endblock %}
