@@ -96,6 +96,7 @@ def c_tasks(request):
 
 def task_page(request, pk):
     task = Task.objects.get(id=pk)
+    print(request.POST.get('languages'))
     if request.method == 'POST':
         form = EditorForm(request.POST)
         if form.is_valid():

@@ -1,0 +1,26 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+<div class="container-task">
+    <div class="code-field">
+    <form action='' method="POST">
+        <div id="editor">
+            {{ form.code }}
+            <div id="code" class="h-100"></div>
+        </div>
+        <div id="output" class="bg-inverse">
+            <button type="submit" class="btn btn-warning">Отправить</button>
+            <pre class="text-white">{{ output }}</pre>
+            {% csrf_token %}
+        </div>
+    </form>
+    </div>
+<div class="task-field">
+<h1>{{task.name}}</h1>
+<h3>{{task.description}}</h3>
+<h3>Входные данные: {{task.input}}</h3>
+<h3>Выходные данные: {{task.output}}</h3>
+<h3>Верно решили {{task.try_true}} из {{task.try_all}} пользователей</h3>
+</div>
+</div>
+{% endblock %}
