@@ -1,15 +1,17 @@
 body {
-    background: white;
+    background:beige;
+    background:-webkit-linear-gradient(-135deg,sandybrown,saddlebrown);
+    background:-o-linear-gradient(-135deg,sandybrown,saddlebrown);
+    background:-moz-linear-gradient(-135deg,sandybrown,saddlebrown);
+    background:linear-gradient(-135deg,sandybrown,saddlebrown)
 }
 aside {
     float: left;
     background: white;
-    width: 20%;
     padding: 2.5%;
     height: 100vh;
     border-right: 5px solid brown;
 }
-
 aside img {
     width: 80px;
     float: left;
@@ -76,4 +78,44 @@ aside ul li:hover, aside ul a:hover{
     float: left;
     margin-left: 20%;
     margin-bottom: 20%;
+}
+.control-panel {
+    background: lightgray;
+    text-align: right;
+    padding: 4px;
+    font-family: sans-serif;
+}
+.languages {
+    background: white;
+    border: 1px solid gray;
+}
+.button-container {
+    text-align: right;
+    padding: 4px;
+}
+.btn {
+    background: #57a958;
+    color: white;
+    padding: 8px;
+    border: 0;
+}
+.output {
+        padding: 4px;
+        border: 2px solid gray;
+        min-height: 100px;
+        width: 99%;
+        resize: none;
+}
+#editor {
+            height: 70%;
+}
+#output {
+    height: 30%;
+}
+#output button {
+    height: 10%;
+}
+#output pre {
+    height: 90%;
+    overflow: scroll;
 }

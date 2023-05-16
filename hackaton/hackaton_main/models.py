@@ -1,15 +1,5 @@
 from django.db import models
-from  django.contrib.auth.models import User
-
-
-class Member(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=200)
-    email = models.CharField(max_length=200, null=True)
-
-    def __str__(self):
-        return self.name
-
+from django.contrib.auth.models import User
 
 class Task(models.Model):
     PROGRAMMING_LANGUAGES = (
@@ -39,12 +29,17 @@ class News(models.Model):
         return self.name
 
 
-class MemberTask(models.Model):
-    member_id = models.ForeignKey('Member', on_delete=models.CASCADE, to_field='id', unique=False)
+class UserTask(models.Model):
+    PROGRAMMING_LANGUAGES = (
+        (1, 'java'),
+        (2, 'c++')
+    )
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, to_field='id', unique=False)
     task_id = models.ForeignKey('Task', on_delete=models.CASCADE, to_field='id', unique=False)
     time = models.DateTimeField(auto_now_add=True)
     status = models.BooleanField()
     code = models.TextField()
+    language = models.PositiveSmallIntegerField(choices=PROGRAMMING_LANGUAGES, default=2)
 
     def __str__(self):
         return self.code

@@ -3,10 +3,56 @@
 Все задачи
 {% endblock %}
 {% block content %}
-<h1>Задачи</h1>
-<h2>Всего {{tasks_count}} задач</h2>
-{% for task in tasks_objects %}
-<h3><a href="/tasks/{{task.id}}">{{task.name}}</a></h3>
-<h3>Верно решили {{task.try_true}} из {{task.try_all}} пользователей</h3>
-{% endfor %}
+<!--
+<div>
+    <div class="p-3 mb-2 text-dark text-right" style="background-color: #EF5E41; font-family: Comic Sans MS; font-weight: bold;">
+        <div class="row">
+            <div class="col text-left" style="margin-left: 250px;">
+                <h5 >Всего {{tasks_count}} задач</h5>
+            </div>
+            <div class="col text-right">
+                <h2>ЗАДАЧИ на Java/C++</h2>
+            </div>
+        </div>
+    </div>
+</div>-->
+<div class="container text-left">
+  <div class="row">
+        <div class="col-12" style="margin-left: 80px;">
+            <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col" class="text-center">Название</th>
+                      <th scope="col" class="text-center">Решаемость</th>
+                      <th scope="col" class="text-center">Принято</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                  </thead>
+                 {% for task in tasks_objects %}
+                  <tbody>
+                    <tr>
+                      <th scope="row">{{task.id}}</th>
+                      <td>{{task.name}}</td>
+                      <td class="text-center">{{task.try_true}} из {{task.try_all}}</td>
+                        {% if task.id in task_list %}
+                            <td class="text-center">+</td>
+                        {% else %}
+                            <td class="text-center">-</td>
+                        {% endif %}
+                      <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                          <button type="button" class="btn btn-outline-info"><a style="text-decoration: none;" href="/tasks/{{task.id}}">Подробнее</a></button>
+                      </td>
+                    </tr>
+                  </tbody>
+                 {% endfor %}
+                </table>
+        </div>
+  </div>
+</div>
 {% endblock %}

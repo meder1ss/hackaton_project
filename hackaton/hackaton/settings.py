@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'hackaton_main',
+    'django_ace',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

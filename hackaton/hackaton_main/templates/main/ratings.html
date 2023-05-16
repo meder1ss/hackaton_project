@@ -4,5 +4,39 @@
 {% endblock %}
 
 {% block content %}
-<h>Рейтинг</h>
+<!--
+<div>
+    <div class="p-3 mb-2 text-dark text-right" style="background-color: #EF5E41; font-family: Comic Sans MS; font-weight: bold;">
+        <h2>РЕЙТИНГ</h2>
+    </div>
+</div>-->
+<div class="container text-left">
+     <div class="row">
+        <div class="col-12" style="margin-left: 80px;">
+            <table class="table">
+                  <thead>
+                    <tr>
+                        <th scope="col" class="text-center">Имя пользователя</th>
+                        <th scope="col" class="text-center">Рейтинг</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                  </thead>
+                {% for key, value in user_rates.items %}
+                  <tbody>
+                    <tr>
+                      <td>{{key}}</td>
+                      <td class="text-center">{{value}}</td>
+                      <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                  </tbody>
+                 {% endfor %}
+                </table>
+            </div>
+     </div>
+</div>
 {% endblock %}
