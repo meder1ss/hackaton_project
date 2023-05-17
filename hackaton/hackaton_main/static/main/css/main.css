@@ -1,10 +1,27 @@
+
 body {
-    background:beige;
-    background:-webkit-linear-gradient(-135deg,sandybrown,saddlebrown);
-    background:-o-linear-gradient(-135deg,sandybrown,saddlebrown);
-    background:-moz-linear-gradient(-135deg,sandybrown,saddlebrown);
-    background:linear-gradient(-135deg,sandybrown,saddlebrown)
+    background: rgb(159,73,0);
+    background: linear-gradient(90deg, rgba(159,73,0,1) 0%, rgba(238,134,11,1) 45%, rgba(252,147,13,1) 100%);
+    counter-reset: section
 }
+a.ert:hover {
+    color: #fff; /* Цвет текста */
+    background: #c74710; /* Цвет фона */
+    transition: 0.7s;
+    border-radius: 15px;
+
+}
+
+a.rtu:hover {
+    color: #fff; /* Цвет текста */
+    background: #f66d52; /* Цвет фона */
+}
+
+td.count::before {
+    counter-increment: section;
+    content:counter(section);
+}
+
 aside {
     float: left;
     background: white;
@@ -53,10 +70,8 @@ aside ul li:hover, aside ul a:hover{
     align-items:center;
     padding:15px;
     background:beige;
-    background:-webkit-linear-gradient(-135deg,sandybrown,saddlebrown);
-    background:-o-linear-gradient(-135deg,sandybrown,saddlebrown);
-    background:-moz-linear-gradient(-135deg,sandybrown,saddlebrown);
-    background:linear-gradient(-135deg,sandybrown,saddlebrown)
+    background: rgb(159,73,0);
+    background: linear-gradient(90deg, rgba(159,73,0,1) 0%, rgba(238,134,11,1) 45%, rgba(252,147,13,1) 100%);
 }
 .wrap-login{
     width:600px;
@@ -79,9 +94,10 @@ aside ul li:hover, aside ul a:hover{
     margin-left: 20%;
     margin-bottom: 20%;
 }
-.control-panel {
-    background: lightgray;
-    text-align: right;
+.cc {
+    background: rgb(159,73,0);
+    background: linear-gradient(90deg, rgba(159,73,0,1) 0%, rgba(238,134,11,1) 45%, rgba(252,147,13,1) 100%);
+    text-align: left;
     padding: 4px;
     font-family: sans-serif;
 }
@@ -93,11 +109,10 @@ aside ul li:hover, aside ul a:hover{
     text-align: right;
     padding: 4px;
 }
-.btn {
-    background: #57a958;
+.as:hover {
+    background: #e55705;
     color: white;
-    padding: 8px;
-    border: 0;
+    transition: 0.7s;
 }
 .output {
         padding: 4px;
@@ -107,7 +122,7 @@ aside ul li:hover, aside ul a:hover{
         resize: none;
 }
 #editor {
-    height: 70%;
+            height: 70%;
 }
 #output {
     height: 30%;
@@ -119,19 +134,4 @@ aside ul li:hover, aside ul a:hover{
     height: 90%;
     overflow: scroll;
 }
-.container-task {
-    display: flex;
-    justify-content: space-between;
-    background-color: orange;
-    padding: 1em;
-    box-sizing: border-box;
-}
-.task-field {
-    width:700px;
-    height: 700px;
-    background-color: white;
-}
-.code-field {
-    width:700px;
-    height: 700px;
-}
+

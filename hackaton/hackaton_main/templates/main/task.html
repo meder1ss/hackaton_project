@@ -1,13 +1,8 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="ja">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Решение задачи</title>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-      <link rel="stylesheet" href = "{% static 'main/css/main.css' %}">
-      <style>
+{% extends 'main/layout.html' %}
+
+{% block title %} Решение задачи {% endblock %}
+{% block style %}
+<style>
         html, body, form {
             height: 100%;
         }
@@ -26,24 +21,34 @@
         .container-task {
           display: flex;
           justify-content: space-between;
-          background-color: orange;
+          background: rgb(159,73,0);
+          background: linear-gradient(90deg, rgba(159,73,0,1) 0%, rgba(238,134,11,1) 45%, rgba(252,147,13,1) 100%);
           padding: 1em;
           box-sizing: border-box;
         }
         .task-field {
-          width:700px;
-          height: 600px;
-          background-color: white;
+            width: 800px;
+            height: 630px;
+            background-color: white;
+            border-style: double;
+            border-color: black;
+            margin-left: 5px;
         }
         .code-field {
-          width:700px;
-          height: 700px;
+            width: 800px;
+            height: 500px;
+            border-style: solid;
+            border-color: black;
         }
     </style>
-  </head>
-  <body>
+{% endblock %}
+{% block content %}
          <form action='' method="POST">
-             <div class="control-panel">
+             <div class="cc control-panel" style="background: rgb(159,73,0);
+            background: linear-gradient(90deg, rgba(159,73,0,1) 0%, rgba(238,134,11,1) 45%, rgba(252,147,13,1) 100%);
+            text-align: left; margin-left: 5px;
+            padding: 4px; font-family: sans-serif;">
+                 <p>Выбери язык: </p>
                 {{ form.language }}
             </div>
             <div class="container-task">
@@ -52,11 +57,8 @@
                         {{ form.code }}
                         <div id="code" class="h-100"></div>
                         </div>
-                        <div id="output" class="bg-inverse">
                         <button type="submit" class="btn btn-warning">Отправить</button>
-                        <pre class="text-white">{{ output }}</pre>
                         {% csrf_token %}
-                        </div>
                 </div>
         <div class="task-field">
         <h1>{{task.name}}</h1>
@@ -103,5 +105,4 @@
           }
         }
     </script>
-  </body>
-</html>
+{% endblock %}
