@@ -5,28 +5,25 @@
 {% block content %}
 
 <div class="container text-center" style="margin-top: 30px">
-    Личный кабинет {{user.username}}
+    <p style="margin-bottom: 50px; font-weight: bold; font-size: 70px; border-style: solid; border-color: black; font-family: Georgia"> ЛИЧНЫЙ КАБИНЕТ </p>
   <div class="row">
         <div class="col-12">
             {% for task in tasks %}
-            <div class="card" style="width: 75rem; margin-left: 80px;">
-                <div class="card-body text-bg-primary mb-3">
-                    <h5 class="card-title" style="font-size: 26px; font-family: Open Sans; ">Решение задачи <a href="/tasks/{{task.task_id.id}}">{{task.task_id}}</a></h5>
-                    <p class="card-text text-left" style="font-size: 20px; font-family: Open Sans;">{{task.code}}</p>
-                    <div class="row">
-                        <div class="col">
-                            <a href="#" class="card-link"></a>
-                        </div>
-                        <div class="col">
-                            {% if task.status %}
-                            <p class="card-date text-right">Верное решение</p>
-                            {% else %}
-                            <p class="card-date text-right">Неверное решение</p>
-                            {% endif %}
-                        </div>
-                    </div>
-                    </div>
+            <div class="card text-center" style="border-style: solid;border-color: black">
+                <div class="card-header">
+                    <h5 class="card-title" style="font-size: 26px; font-family: Open Sans; ">{{task.task_id}}<a href="/tasks/{{task.task_id.id}}" style="font-size: 20px;text-align: right"> (Перейти)</a></h5>
                 </div>
+                <div class="card-body">
+                    <p class="card-text text-left" style="font-size: 20px; font-family: Open Sans;">{{task.code}}</p>
+                </div>
+            <div class="card-footer text-muted" >
+                {% if task.status %}
+                            <p class="card-date text-right" style="text-align: center">Верно</p>
+                            {% else %}
+                            <p class="card-date text-right" style="text-align: center">Неверно</p>
+                            {% endif %}
+            </div>
+            </div>
             <p></p>
             {% endfor %}
         </div>

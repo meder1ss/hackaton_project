@@ -7,7 +7,7 @@
             height: 100%;
         }
         #editor {
-            height: 80%;
+            height: 100%;
         }
         #output {
             height: 20%;
@@ -27,45 +27,53 @@
           box-sizing: border-box;
         }
         .task-field {
-            width: 800px;
+            width: 1000px;
             height: 630px;
             background-color: white;
             border-style: double;
             border-color: black;
-            margin-left: 5px;
+            padding: 1%;
         }
         .code-field {
             width: 800px;
-            height: 500px;
+            height: 800px;
             border-style: solid;
             border-color: black;
+        }
+        h3.txt{
+            border-style: solid;
+            border-color: black;
+            margin-top: 50px;
+        }
+        h1{
+            text-decoration: underline black;
         }
     </style>
 {% endblock %}
 {% block content %}
          <form action='' method="POST">
-             <div class="cc control-panel" style="background: rgb(159,73,0);
+             <header class="control-panel" style="background: rgb(159,73,0);
             background: linear-gradient(90deg, rgba(159,73,0,1) 0%, rgba(238,134,11,1) 45%, rgba(252,147,13,1) 100%);
-            text-align: left; margin-left: 5px;
-            padding: 4px; font-family: sans-serif;">
-                 <p>Выбери язык: </p>
+            text-align: center;
+            padding: 10px; font-family: sans-serif;">
+                 <p style="margin-right: 700px;">Выбери язык: </p>
                 {{ form.language }}
-            </div>
+                 <button type="submit" class="btn btn-warning" style="margin-right: 600px;">Отправить</button>
+                        {% csrf_token %}
+            </header>
             <div class="container-task">
                 <div class="code-field">
                         <div id="editor">
                         {{ form.code }}
                         <div id="code" class="h-100"></div>
                         </div>
-                        <button type="submit" class="btn btn-warning">Отправить</button>
-                        {% csrf_token %}
                 </div>
         <div class="task-field">
         <h1>{{task.name}}</h1>
         <h3>{{task.description}}</h3>
-        <h3>Входные данные: {{task.input}}</h3>
-        <h3>Выходные данные: {{task.output}}</h3>
-        <h3>Верно решили {{task.try_true}} из {{task.try_all}} пользователей</h3>
+        <h3 class="txt">Входные данные: {{task.input}}</h3>
+        <h3 class="txt">Выходные данные: {{task.output}}</h3>
+        <h5 style="margin-top: 50px">Верно решили {{task.try_true}} из {{task.try_all}} пользователей</h5>
         </div></div></form>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
