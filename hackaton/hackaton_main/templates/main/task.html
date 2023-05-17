@@ -1,26 +1,107 @@
-{% extends "main/base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Решение задачи</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+      <link rel="stylesheet" href = "{% static 'main/css/main.css' %}">
+      <style>
+        html, body, form {
+            height: 100%;
+        }
+        #editor {
+            height: 80%;
+        }
+        #output {
+            height: 20%;
+        }
+        #output button {
+            height: 20%;
+        }
+        #output pre {
+            height: 90%;
+        }
+        .container-task {
+          display: flex;
+          justify-content: space-between;
+          background-color: orange;
+          padding: 1em;
+          box-sizing: border-box;
+        }
+        .task-field {
+          width:700px;
+          height: 600px;
+          background-color: white;
+        }
+        .code-field {
+          width:700px;
+          height: 700px;
+        }
+    </style>
+  </head>
+  <body>
+         <form action='' method="POST">
+             <div class="control-panel">
+                {{ form.language }}
+            </div>
+            <div class="container-task">
+                <div class="code-field">
+                        <div id="editor">
+                        {{ form.code }}
+                        <div id="code" class="h-100"></div>
+                        </div>
+                        <div id="output" class="bg-inverse">
+                        <button type="submit" class="btn btn-warning">Отправить</button>
+                        <pre class="text-white">{{ output }}</pre>
+                        {% csrf_token %}
+                        </div>
+                </div>
+        <div class="task-field">
+        <h1>{{task.name}}</h1>
+        <h3>{{task.description}}</h3>
+        <h3>Входные данные: {{task.input}}</h3>
+        <h3>Выходные данные: {{task.output}}</h3>
+        <h3>Верно решили {{task.try_true}} из {{task.try_all}} пользователей</h3>
+        </div></div></form>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ext-language_tools.js"></script>
+    <script src="https://cloud9ide.github.io/emmet-core/emmet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ext-emmet.js"></script>
+    <script>
+        var langTools = ace.require("ace/ext/language_tools");
+        var editor = ace.edit("code");
+        var textarea = $('textarea[name="code"]').hide();
+        editor.getSession().setValue(textarea.val());
+        editor.getSession().on('change', function(){
+          textarea.val(editor.getSession().getValue());
+        });
+        editor.$blockScrolling = Infinity;
+        editor.setOptions({
+            enableBasicAutocompletion: true,
+            enableSnippets: true,
+            enableLiveAutocompletion: true,
+            enableEmmet: true,
+        });
+        editor.setTheme("ace/theme/monokai");
+        editor.getSession().setMode("ace/mode/c_cpp");
+        editor.setFontSize(20);
 
-{% block content %}
-<div class="container-task">
-    <div class="code-field">
-    <form action='' method="POST">
-        <div id="editor">
-            {{ form.code }}
-            <div id="code" class="h-100"></div>
-        </div>
-        <div id="output" class="bg-inverse">
-            <button type="submit" class="btn btn-warning">Отправить</button>
-            <pre class="text-white">{{ output }}</pre>
-            {% csrf_token %}
-        </div>
-    </form>
-    </div>
-<div class="task-field">
-<h1>{{task.name}}</h1>
-<h3>{{task.description}}</h3>
-<h3>Входные данные: {{task.input}}</h3>
-<h3>Выходные данные: {{task.output}}</h3>
-<h3>Верно решили {{task.try_true}} из {{task.try_all}} пользователей</h3>
-</div>
-</div>
-{% endblock %}
+        function changeLanguage() {
+          let language = document.getElementById("id_language");
+          if (language.value == '1') {
+            console.log('cpp');
+            editor.session.setMode("ace/mode/c_cpp");
+          }
+          else if (language.value == '2') {
+            console.log('java');
+            editor.session.setMode("ace/mode/java");
+          }
+        }
+    </script>
+  </body>
+</html>

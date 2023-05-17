@@ -107,7 +107,7 @@ aside ul li:hover, aside ul a:hover{
         resize: none;
 }
 #editor {
-            height: 70%;
+    height: 70%;
 }
 #output {
     height: 30%;
@@ -118,4 +118,20 @@ aside ul li:hover, aside ul a:hover{
 #output pre {
     height: 90%;
     overflow: scroll;
+}
+.container-task {
+    display: flex;
+    justify-content: space-between;
+    background-color: orange;
+    padding: 1em;
+    box-sizing: border-box;
+}
+.task-field {
+    width:700px;
+    height: 700px;
+    background-color: white;
+}
+.code-field {
+    width:700px;
+    height: 700px;
 }

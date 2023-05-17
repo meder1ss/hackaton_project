@@ -4,7 +4,6 @@ from .forms import CreateUserForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from .forms import CodeForm
 from django.conf import settings
 from django.urls import reverse_lazy
 from django.views import generic
@@ -96,16 +95,13 @@ def c_tasks(request):
 
 def task_page(request, pk):
     task = Task.objects.get(id=pk)
-    print(request.POST.get('languages'))
     if request.method == 'POST':
         form = EditorForm(request.POST)
         if form.is_valid():
-            pass
-            #user = request.user
-            #code = form.cleaned_data['text']
-            #status = code_check(code, task)
-            #task_solution = UserTask(user_id=user, task_id=task, status=status, code=code)
-            #task_solution.save()
+            code = form.cleaned_data['code']
+            language = form.cleaned_data['language']
+            input = task.input
+            output = task.output
     else:
         form = EditorForm()
     context = {'task': task, "form": form}

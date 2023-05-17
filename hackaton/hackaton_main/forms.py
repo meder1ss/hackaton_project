@@ -10,15 +10,10 @@ class CreateUserForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1', 'password2']
 
-
-class CodeForm(forms.Form):
-    text = forms.CharField(widget=AceWidget(mode='c_cpp', theme='twilight'))
-
-from django import forms
-
-
 class EditorForm(forms.Form):
-    """エディタ部分となるフォーム."""
-    code = forms.CharField(
-        widget=forms.Textarea,
+    PROGRAMMING_LANGUAGES = (
+        ('1', 'c++'),
+        ('2', 'java')
     )
+    language = forms.ChoiceField(choices=PROGRAMMING_LANGUAGES, widget=forms.Select(attrs={"onchange":"changeLanguage()"}))
+    code = forms.CharField(widget=forms.Textarea)
