@@ -4,12 +4,11 @@ from django.contrib.auth.models import User
 class Task(models.Model):
     PROGRAMMING_LANGUAGES = (
         (1, 'any'),
-        (2, 'java'),
-        (3, 'c++')
+        (2, 'python'),
+        (3, 'ruby')
     )
     name = models.CharField(max_length=200)
     description = models.TextField()
-    input = models.TextField(null=True, blank=True)
     output = models.TextField()
     try_all = models.IntegerField(default=0)
     try_true = models.IntegerField(default=0)
@@ -31,8 +30,8 @@ class News(models.Model):
 
 class UserTask(models.Model):
     PROGRAMMING_LANGUAGES = (
-        (1, 'java'),
-        (2, 'c++')
+        (1, 'python'),
+        (2, 'ruby')
     )
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, to_field='id', unique=False)
     task_id = models.ForeignKey('Task', on_delete=models.CASCADE, to_field='id', unique=False)

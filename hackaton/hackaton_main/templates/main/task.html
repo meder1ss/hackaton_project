@@ -51,6 +51,9 @@
     </style>
 {% endblock %}
 {% block content %}
+	{% if blocked %} 
+	<div class='text-center' style='font-size:300%'>Лимит решений на сегодня исчерпан!</div>
+	{% else %}
          <form action='' method="POST">
              <header class="control-panel" style="background: rgb(159,73,0);
             background: linear-gradient(90deg, rgba(159,73,0,1) 0%, rgba(238,134,11,1) 45%, rgba(252,147,13,1) 100%);
@@ -71,10 +74,12 @@
         <div class="task-field">
         <h1>{{task.name}}</h1>
         <h3>{{task.description}}</h3>
-        <h3 class="txt">Входные данные: {{task.input}}</h3>
         <h3 class="txt">Выходные данные: {{task.output}}</h3>
         <h5 style="margin-top: 50px">Верно решили {{task.try_true}} из {{task.try_all}} пользователей</h5>
+        <div class='text-center' style='font-size:200%; margin-top:70px'>{% if result %}
+        Задача решена {% else %} Задача не решена {% endif %}</div>
         </div></div></form>
+        {% endif %}
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
@@ -98,18 +103,18 @@
             enableEmmet: true,
         });
         editor.setTheme("ace/theme/monokai");
-        editor.getSession().setMode("ace/mode/c_cpp");
+        editor.getSession().setMode("ace/mode/python");
         editor.setFontSize(20);
 
         function changeLanguage() {
           let language = document.getElementById("id_language");
           if (language.value == '1') {
-            console.log('cpp');
-            editor.session.setMode("ace/mode/c_cpp");
+            console.log('python');
+            editor.session.setMode("ace/mode/python");
           }
           else if (language.value == '2') {
-            console.log('java');
-            editor.session.setMode("ace/mode/java");
+            console.log('ruby');
+            editor.session.setMode("ace/mode/ruby");
           }
         }
     </script>

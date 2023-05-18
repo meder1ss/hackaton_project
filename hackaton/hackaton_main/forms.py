@@ -12,8 +12,8 @@ class CreateUserForm(UserCreationForm):
 
 class EditorForm(forms.Form):
     PROGRAMMING_LANGUAGES = (
-        ('1', 'c++'),
-        ('2', 'java')
+        ('1', 'python'),
+        ('2', 'ruby')
     )
     language = forms.ChoiceField(choices=PROGRAMMING_LANGUAGES, widget=forms.Select(attrs={"onchange":"changeLanguage()"}))
     code = forms.CharField(widget=forms.Textarea)
